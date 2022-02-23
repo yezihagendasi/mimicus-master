@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 '''
 Copyright 2013, 2014 Nedim Srndic, University of Tuebingen
 
@@ -32,10 +33,14 @@ class sklearn_SVC(SVC):
     A class representing the Support Vector Machine classifier as implemented 
     by scikit-learn. 
     '''
+    # 一个表示支持向量机分类器的类，由scikit-learn实现。
+    # SVM模型有两个非常重要的参数C与gamma。其中
+    # C是惩罚系数，即对误差的宽容度。c越高，说明越不能容忍出现误差, 容易过拟合。C越小，容易欠拟合。C过大或过小，泛化能力变差
+    # gamma是选择RBF函数作为kernel后，该函数自带的一个参数。隐含地决定了数据映射到新的特征空间后的分布，gamma越大，支持向量越少，gamma值越小，支持向量越多。支持向量的个数影响训练与预测的速度。
 
     def __init__(self, 
                  C=10, # Found using grid search
-                 kernel='rbf', 
+                 kernel='rbf', #表示算法使用高斯核函数
                  degree=3, 
                  gamma=0.01, # Found using grid search
                  coef0=0.0, 

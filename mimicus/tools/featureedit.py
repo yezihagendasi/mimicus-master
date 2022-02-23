@@ -123,47 +123,47 @@ _regex_pdf_image_width = re.compile(r'.*\/Width(?:\s|\n)+(\d+).*')
 _regex_pdf_version = re.compile(r'%PDF-1\.(\d)')
 
 # Features which are simple to increment
-_incrementable_feats = {'count_acroform' : '/AcroForm', 
-                'count_acroform_obs' : '/Acro#46orm', 
-                'count_action' : '/AA', 
-                'count_action_obs' : '/Open#41ction', 
-                'count_box_a4' : '[0 0 597 842]', 
-                'count_box_legal' : '[0 0 611 1007]', 
-                'count_box_letter' : '[0 0 611 791]', 
-                'count_box_other' : '[33 34 35 36]', 
-                'count_box_overlap' : '[0 0 597 791]', 
-                'count_endobj' : 'endobj', 
-                'count_endstream' : 'endstream', 
-                'count_eof' : '%EOF', 
-                'count_font' : '/Font', 
-                'count_font_obs' : '/F#6fnt', 
-                'count_image_large' : '<< /Height 888/Width 888>>', 
-                'count_image_med' : '<< /Height 255/Width 255>>', 
-                'count_image_small' : '<< /Height 65/Width 65>>', 
-#                'count_image_total', 
-                'count_image_xlarge' : '<< /Height 8888/Width 8888>>', 
-                'count_image_xsmall' : '<< /Height 1/Width 1>>', 
-                'count_javascript' : '/JavaScript', 
-                'count_javascript_obs' : '/Jav#61Script', 
-                'count_js' : '/JS', 
-                'count_js_obs' : '/#4AS', 
-                'count_obj' : '22 0 obj', 
-                'count_objstm' : '/ObjStm', 
-                'count_objstm_obs' : '/Ob#6aStm', 
-                'count_page' : '/Page', 
-                'count_page_obs' : '/#50age', 
-                'count_startxref' : 'startxref', 
-                'count_stream' : 'stream', 
-#                'count_stream_diff', 
-                'count_trailer' : 'trailer', 
+_incrementable_feats = {'count_acroform' : '/AcroForm',
+                'count_acroform_obs' : '/Acro#46orm',
+                'count_action' : '/AA',
+                'count_action_obs' : '/Open#41ction',
+                'count_box_a4' : '[0 0 597 842]',
+                'count_box_legal' : '[0 0 611 1007]',
+                'count_box_letter' : '[0 0 611 791]',
+                'count_box_other' : '[33 34 35 36]',
+                'count_box_overlap' : '[0 0 597 791]',
+                'count_endobj' : 'endobj',
+                'count_endstream' : 'endstream',
+                'count_eof' : '%EOF',
+                'count_font' : '/Font',
+                'count_font_obs' : '/F#6fnt',
+                'count_image_large' : '<< /Height 888/Width 888>>',
+                'count_image_med' : '<< /Height 255/Width 255>>',
+                'count_image_small' : '<< /Height 65/Width 65>>',
+#                'count_image_total',
+                'count_image_xlarge' : '<< /Height 8888/Width 8888>>',
+                'count_image_xsmall' : '<< /Height 1/Width 1>>',
+                'count_javascript' : '/JavaScript',
+                'count_javascript_obs' : '/Jav#61Script',
+                'count_js' : '/JS',
+                'count_js_obs' : '/#4AS',
+                'count_obj' : '22 0 obj',
+                'count_objstm' : '/ObjStm',
+                'count_objstm_obs' : '/Ob#6aStm',
+                'count_page' : '/Page',
+                'count_page_obs' : '/#50age',
+                'count_startxref' : 'startxref',
+                'count_stream' : 'stream',
+#                'count_stream_diff',
+                'count_trailer' : 'trailer',
                 'count_xref' : 'xref'}
 
 # Metadata features
-_metadata_feats = {'author' : ' /Author({})\n', 
-                    'creator' : ' /Creator({})\n', 
-                    'keywords' : ' /Keywords({})\n', 
-                    'producer' : ' /Producer({})\n', 
-                    'subject' : ' /Subject({})\n', 
+_metadata_feats = {'author' : ' /Author({})\n',
+                    'creator' : ' /Creator({})\n',
+                    'keywords' : ' /Keywords({})\n',
+                    'producer' : ' /Producer({})\n',
+                    'subject' : ' /Subject({})\n',
                     'title' : ' /Title({})\n'}
 
 def _sanitize_PDF_literal_string(pdfstr):
@@ -173,12 +173,12 @@ def _sanitize_PDF_literal_string(pdfstr):
 
 class FileDefined:
     '''
-    A class used as a marker for feature descriptions indicating that the 
-    range of valid values for that feature (its minimum, maximum or both) 
-    is bounded by its concrete value in a concrete file. For example, if the 
-    FileDefined type is used as the lower bound of a valid range of a feature, 
-    then this file already has the minimum value of this feature, i.e., it 
-    cannot be reduced further. 
+    A class used as a marker for feature descriptions indicating that the
+    range of valid values for that feature (its minimum, maximum or both)
+    is bounded by its concrete value in a concrete file. For example, if the
+    FileDefined type is used as the lower bound of a valid range of a feature,
+    then this file already has the minimum value of this feature, i.e., it
+    cannot be reduced further.
     '''
 
 '''
@@ -337,67 +337,67 @@ _pdfrate_feature_names = sorted(_pdfrate_feature_descriptions.keys())
 
 class FeatureDescriptor(object):
     '''
-    A class containing descriptions of PDFrate features. 
+    A class containing descriptions of PDFrate features.
     '''
-    
+
     @staticmethod
     def get_feature_count():
         return 135
-    
+
     @staticmethod
     def get_feature_name(i):
         '''
-        Returns the i-th feature name. 
+        Returns the i-th feature name.
         '''
         return copy.copy(_pdfrate_feature_names[i])
-    
+
     @staticmethod
     def get_feature_names():
         '''
-        Returns a sorted list of feature names. 
+        Returns a sorted list of feature names.
         '''
         return copy.copy(_pdfrate_feature_names)
-    
+
     @staticmethod
     def get_feature_description(feat):
         '''
-        Returns the description of the given feature as defined by the 
-        FeatureDescriptor.get_feature_descriptions() method. 
-        
+        Returns the description of the given feature as defined by the
+        FeatureDescriptor.get_feature_descriptions() method.
+
         feat - name or index of the feature
         '''
         feat_name = FeatureDescriptor.get_feature_names()[feat] if type(feat) == int else feat
         return copy.copy(_pdfrate_feature_descriptions[feat_name])
-    
+
     @staticmethod
     def get_feature_descriptions():
         '''
         For every feature, a dictionary is returned describing that feature:
-        its type ('type'), whether it may be altered or not ('edit', with the 
-        values 'y' if altering is implemented, 'n' if it's impossible to 
-        alter and 'm' if altering is not directly implemented, but the 
-        feature value might change by modifying some other features) and 
-        the range ('range') within which it may be altered as a tuple of 
-        lower and upper bound (FileDefined means that this lower or upper 
-        bound cannot be modified further than what is currently in the file). 
-        The range represents actual minimum and maximum values seen in the 
-        Contagio dataset. 
+        its type ('type'), whether it may be altered or not ('edit', with the
+        values 'y' if altering is implemented, 'n' if it's impossible to
+        alter and 'm' if altering is not directly implemented, but the
+        feature value might change by modifying some other features) and
+        the range ('range') within which it may be altered as a tuple of
+        lower and upper bound (FileDefined means that this lower or upper
+        bound cannot be modified further than what is currently in the file).
+        The range represents actual minimum and maximum values seen in the
+        Contagio dataset.
         '''
         return copy.copy(_pdfrate_feature_descriptions)
 
     @staticmethod
     def get_feature_mask_numpy():
         '''
-        Returns a numpy array with 1 for every feature which is modifiable, 
-        otherwise 0. 
+        Returns a numpy array with 1 for every feature which is modifiable,
+        otherwise 0.
         '''
         return numpy.array([1 if _pdfrate_feature_descriptions[name]['edit'] == 'y' else 0 for name in _pdfrate_feature_names])
 
 def features_inverse_standardize(feats, standardizer):
     '''
-    Given a standardized feature vector and the standardizer object used 
-    to standardize it, performs the inverse transformation and makes sure 
-    the resulting data types of all features correspond to their descriptions. 
+    Given a standardized feature vector and the standardizer object used
+    to standardize it, performs the inverse transformation and makes sure
+    the resulting data types of all features correspond to their descriptions.
     '''
     new_feats = list(standardizer.inverse_transform(feats, copy=True))
     for i in range(0, FeatureDescriptor.get_feature_count()):
@@ -408,17 +408,17 @@ def features_inverse_standardize(feats, standardizer):
             new_feats[i] = False if abs(new_feats[i]) < 0.01 else True
         elif t == float:
             new_feats[i] = float(new_feats[i])
-    
+
     return new_feats
 
 class FeatureEdit(object):
     '''
-    A class mimicking PDFrate-like feature reading and additionally enabling 
-    the modification of features. 
-    
-    All methods beginning with 'get_' or 'set_' are considered special, i.e., 
-    a method should begin like that if and only if it handles PDFrate-defined 
-    features. 
+    A class mimicking PDFrate-like feature reading and additionally enabling
+    the modification of features.
+
+    All methods beginning with 'get_' or 'set_' are considered special, i.e.,
+    a method should begin like that if and only if it handles PDFrate-defined
+    features.
     '''
 
     def __init__(self, pdf):
@@ -428,30 +428,30 @@ class FeatureEdit(object):
         self.pdf = pdf
         self.feature_dict = dict()
         self.insert_offset = self._get_startxref_position()
-    
+
     #@CachedMethod
     def retrieve_feature_vector(self):
         '''
-        Returns a list of feature values, sorted alphabetically by feature 
-        name. 
+        Returns a list of feature values, sorted alphabetically by feature
+        name.
         '''
         features = sorted(self.retrieve_feature_dictionary().items(), key=operator.itemgetter(0))
         return [value for (_, value) in features]
-    
+
     def retrieve_feature_vector_numpy(self):
         '''
-        Returns a numpy array of feature values, sorted alphabetically by 
-        feature name. 
+        Returns a numpy array of feature values, sorted alphabetically by
+        feature name.
         '''
         return numpy.array(self.retrieve_feature_vector()).reshape(1, FeatureDescriptor.get_feature_count())
-    
+
     #@CachedMethod
     def retrieve_feature_dictionary(self):
         '''
-        Returns a dictionary mapping feature names to corresponding feature 
-        values for this file. 
-        
-        This method used to be multithreaded for greater speed, but due to 
+        Returns a dictionary mapping feature names to corresponding feature
+        values for this file.
+
+        This method used to be multithreaded for greater speed, but due to
         Python bug http://bugs.python.org/issue13817 it no longer is.
         '''
         if len(self.feature_dict) > 0:
@@ -460,12 +460,12 @@ class FeatureEdit(object):
 #         queue_out = Queue.Queue()
 #         print_lock = threading.Lock()
 #         print_lock2 = threading.Lock()
-#         
+#
 #         def thread_print(tid, msg):
 #             print_lock2.acquire(True)
 #             print '\t'*tid + '%s: %s' % (tid, msg)
 #             print_lock2.release()
-#         
+#
 #         def thread_function(tid):
 #             while True:
 #                 thread_print(tid, 'running')
@@ -496,16 +496,16 @@ class FeatureEdit(object):
 #                 thread_print(tid, 'put method %s' % method)
 #                 queue_in.task_done()
 #                 thread_print(tid, 'task done')
-#         
+#
 #         for method in FeatureDescriptor.get_feature_names():
 #             queue_in.put(method)
-# 
+#
 #         for tid in range(10):
 #             thread = threading.Thread(target=thread_function, args=[tid])
 #             thread.daemon = True
 #             thread.name = tid
 #             thread.start()
-#         
+#
 #         queue_in.join()
 #         feature_dict = dict()
 #         while not queue_out.empty():
@@ -525,12 +525,12 @@ class FeatureEdit(object):
             feature_dict[method] = r
         self.feature_dict = feature_dict
         return copy.deepcopy(feature_dict)
-    
+
     def retrieve_feature_bounds(self):
         '''
-        Returns two lists corresponding to the upper and lower bounds for feature 
+        Returns two lists corresponding to the upper and lower bounds for feature
         modifications of a given object. This method is *not* static because some
-        bounds are object-dependent. The bounds are returned for all features, 
+        bounds are object-dependent. The bounds are returned for all features,
         including the non-modifiable ones.
         '''
         def check_current_value(name,value):
@@ -538,7 +538,7 @@ class FeatureEdit(object):
                 return getattr(self, 'get_'+name)()
             else:
                 return value
-        
+
         lb = []
         ub = []
         fd = FeatureDescriptor.get_feature_descriptions()
@@ -547,102 +547,102 @@ class FeatureEdit(object):
             lb.append(check_current_value(key,value['range'][0]))
             ub.append(check_current_value(key,value['range'][1]))
         return (numpy.array(lb),numpy.array(ub))
-    
+
     @CachedMethod
     def get_size(self):
         return os.path.getsize(self.pdf)
-    
+
     @CachedMethod
     def get_version(self):
         r = _perl_regex(r'print $1 while /%PDF-1\.(\d)/g', self.pdf)
         r = r.split('\n')[0]
         return int(r) if r else 0
-    
+
     @CachedMethod
     def get_count_obj(self):
         r = _perl_regex(r'while (/\d+\s+\d+\s+obj/g) {$c++} print $c', self.pdf)
         return int(r) if len(r) > 1 else 0
-    
+
     @CachedMethod
     def get_count_endobj(self):
         r = _perl_regex(r'while (/\s+endobj\s+/g) {$c++} print $c', self.pdf)
         return int(r) if len(r) > 1 else 0
-    
+
     @CachedMethod
     def get_count_stream(self):
         r = _perl_regex(r'while (/[^\w]stream\s+/g) {$c++} print $c', self.pdf)
         return int(r) if len(r) > 1 else 0
-    
+
     @CachedMethod
     def get_count_endstream(self):
         r = _perl_regex(r'while (/[^\w]endstream\s+/g) {$c++} print $c', self.pdf)
         return int(r) if len(r) > 1 else 0
-    
+
     @CachedMethod
     def get_count_xref(self):
         r = _perl_regex(r'while (/[^\w\d]xref[^\w\d]/g) {$c++} print $c', self.pdf)
         return int(r) if len(r) > 1 else 0
-    
+
     @CachedMethod
     def get_count_trailer(self):
         r = _perl_regex(r'while (/[^\w\d]trailer[^\w\d]/g) {$c++} print $c', self.pdf)
         return int(r) if len(r) > 1 else 0
-    
+
     @CachedMethod
     def get_count_startxref(self):
         r = _perl_regex(r'while (/[^\w\d]startxref[^\w\d]/g) {$c++} print $c', self.pdf)
         return int(r) if len(r) > 1 else 0
-    
+
     @CachedMethod
     def get_count_eof(self):
         r = _perl_regex(r'while (/%EOF/g) {$c++} print $c', self.pdf)
         return int(r) if len(r) > 1 else 0
-    
+
     @CachedMethod
     def get_count_page(self):
         r = _perl_regex(r'while (/\/Page[^\w\d]/g) {$c++} print $c', self.pdf)
         return int(r) if len(r) > 1 else 0
-    
+
     @CachedMethod
     def get_count_objstm(self):
         r = _perl_regex(r'while (/\/ObjStm[^\w\d]/g) {$c++} print $c', self.pdf)
         return int(r) if len(r) > 1 else 0
-    
+
     @CachedMethod
     def get_count_js(self):
         # PDFrate doesn't always find this!
         r = _perl_regex(r'while (/\/JS[^\w\d]/g) {$c++} print $c', self.pdf)
         return int(r) if len(r) > 1 else 0
-    
+
     @CachedMethod
     def get_count_javascript(self):
         r = _perl_regex(r'while (/\/JavaScript[^\w\d]/g) {$c++} print $c', self.pdf)
         return int(r) if len(r) > 1 else 0
-    
+
     @CachedMethod
     def get_count_action(self):
         r = _perl_regex(r'while (/\/(OpenAction|AA)[^\w\d]/g) {$c++} print $c', self.pdf)
         return int(r) if len(r) > 1 else 0
-    
+
     @CachedMethod
     def get_count_acroform(self):
         # Not present in the PDFrate output!
         r = _perl_regex(r'while (/(\/AcroForm)[^\w\d]/g) {$c++} print $c', self.pdf)
         return int(r) if len(r) > 1 else 0
-    
+
     @CachedMethod
     def get_count_font(self):
         r = _perl_regex(r'while (/(\/Font)[^\w\d]/g) {$c++} print $c', self.pdf)
         return int(r) if len(r) > 1 else 0
-    
+
     @CachedMethod
     def get_count_stream_diff(self):
         return self.get_count_stream() - self.get_count_endstream()
-    
+
     @CachedMethod
     def __get_moddate_raw(self):
         return _perl_regex(r'print $1 while /\/ModDate\((.*?)\)/g', self.pdf).splitlines()
-    
+
     @CachedMethod
     def get_moddate_ts(self):
         r = self.__get_moddate_raw()
@@ -650,7 +650,7 @@ class FeatureEdit(object):
         # Date format: D:YYYYMMDDHHmmSSOHH'mm
         if len(r) < 6 or r[:2] != 'D:': return -1
         timestamp = 0
-        try: 
+        try:
             YYYY = int(r[2:6])
             MM = int(r[6:8]) if len(r) > 6 else 1
             DD = int(r[8:10]) if len(r) > 8 else 1
@@ -668,7 +668,7 @@ class FeatureEdit(object):
             return int(calendar.timegm(timestamp.utctimetuple()))
         except:
             return -1
-    
+
     @CachedMethod
     def get_moddate_tz(self):
         r = self.__get_moddate_raw()
@@ -676,9 +676,9 @@ class FeatureEdit(object):
         # Date format: D:YYYYMMDDHHmmSSOHH'mm
         if len(r) < 6 or r[:2] != 'D:': # minimum is D:YYYY
             return -1
-        
+
         moddate_tz = 0
-        try: 
+        try:
             O = r[16] if len(r) > 16 else 'Z'
             HH2 = int(r[17:19]) if len(r) > 17 else 0
             mm2 = int(r[20:22]) if len(r) > 20 else 0
@@ -688,30 +688,30 @@ class FeatureEdit(object):
         except Exception:
             return -1
         return moddate_tz
-    
+
     @CachedMethod
     def __get_createdate_raw(self):
         return _perl_regex(r'print $1 while /<x[am]p:CreateDate>(.*?)<\/x[am]p:CreateDate>/g', self.pdf).splitlines()
-    
+
     @CachedMethod
     def get_createdate_ts(self):
         r = self.__get_createdate_raw()
-        if not r: 
+        if not r:
             return -1
-        else: 
+        else:
             r = r[-1]
         try:
             timestamp = dateutil.parser.parse(r)
             return int(calendar.timegm(timestamp.utctimetuple()))
         except:
             return -1
-    
+
     @CachedMethod
     def get_createdate_tz(self):
         r = self.__get_createdate_raw()
-        if not r: 
+        if not r:
             return -1
-        else: 
+        else:
             r = r[-1]
         try:
             timezone = dateutil.parser.parse(r).strftime("%z")
@@ -721,383 +721,383 @@ class FeatureEdit(object):
             return tz_sec if timezone[0] == '+' else -tz_sec
         except Exception:
             return -1
-    
+
     @CachedMethod
     def get_createdate_version_ratio(self):
         ts = self.get_createdate_ts()
         if ts == -1: return -1
         v = self.get_version()
         return self.get_createdate_ts() / 86400.0 / v if v != 0 else 0
-    
+
     @CachedMethod
     def get_moddate_version_ratio(self):
         ts = self.get_moddate_ts()
         if ts == -1: return -1
         v = self.get_version()
         return self.get_moddate_ts() / 86400.0 / v if v != 0 else 0
-    
+
     @CachedMethod
     def get_createdate_dot(self):
         return self.__get_createdate_raw().count('.')
-    
+
     @CachedMethod
     def get_moddate_dot(self):
         return self.__get_moddate_raw().count('.')
-    
+
     @CachedMethod
     def __get_pdfid0_raw(self):
         return _perl_regex(r'print $1 while /\/ID\[[^\d|A-F|a-f]*([\d|A-F|a-f]*)/g', self.pdf).splitlines()
-    
+
     @CachedMethod
     def __get_pdfid0(self):
         return self.__get_pdfid0_raw()[-1] if self.__get_pdfid0_raw() else ''
-    
+
     @CachedMethod
     def get_pdfid0_len(self):
         return len(self.__get_pdfid0())
-    
+
     @CachedMethod
     def get_pdfid0_lc(self):
         return len(filter(str.islower, self.__get_pdfid0()))
-    
+
     @CachedMethod
     def get_pdfid0_uc(self):
         return len(filter(str.isupper, self.__get_pdfid0()))
-    
+
     @CachedMethod
     def get_pdfid0_num(self):
         return len(filter(str.isdigit, self.__get_pdfid0()))
-    
+
     @CachedMethod
     def get_pdfid0_oth(self):
         return self.get_pdfid0_len() - self.get_pdfid0_lc() - self.get_pdfid0_uc() - self.get_pdfid0_num()
-    
+
     @CachedMethod
     def get_pdfid0_dot(self):
         return self.__get_pdfid0().count('.')
-    
+
     @CachedMethod
     def __get_pdfid1_raw(self):
         return _perl_regex(r'print $1 while /\/ID\[[^\d|A-F|a-f]*[\d|A-F|a-f]*[^\d|A-F|a-f]*([\d|A-F|a-f]*)/g', self.pdf).splitlines()
-    
+
     @CachedMethod
     def __get_pdfid1(self):
         return self.__get_pdfid1_raw()[-1] if self.__get_pdfid1_raw() else ''
-    
+
     @CachedMethod
     def get_pdfid1_len(self):
         return len(self.__get_pdfid1())
-    
+
     @CachedMethod
     def get_pdfid1_lc(self):
         return len(filter(str.islower, self.__get_pdfid1()))
-    
+
     @CachedMethod
     def get_pdfid1_uc(self):
         return len(filter(str.isupper, self.__get_pdfid1()))
-    
+
     @CachedMethod
     def get_pdfid1_num(self):
         return len(filter(str.isdigit, self.__get_pdfid1()))
-    
+
     @CachedMethod
     def get_pdfid1_oth(self):
         return self.get_pdfid1_len() - self.get_pdfid1_lc() - self.get_pdfid1_uc() - self.get_pdfid1_num()
-    
+
     @CachedMethod
     def get_pdfid1_dot(self):
         return self.__get_pdfid1().count('.')
-    
+
     @CachedMethod
     def get_pdfid_mismatch(self):
         return self.__get_pdfid0() != self.__get_pdfid1()
-    
+
     @CachedMethod
     def __get_title_raw(self):
         return _perl_regex(r'print $1 while /\/Title[^\w\d]*\((.*?[^\\]?)\)/g', self.pdf).splitlines()
-    
+
     @CachedMethod
     def __get_title(self):
         return _sanitize_PDF_literal_string(self.__get_title_raw()[-1]) if self.__get_title_raw() else ''
-    
+
     @CachedMethod
     def get_title_len(self):
         return len(self.__get_title())
-    
+
     @CachedMethod
     def get_title_lc(self):
         return len(filter(str.islower, self.__get_title()))
-    
+
     @CachedMethod
     def get_title_uc(self):
         return len(filter(str.isupper, self.__get_title()))
-    
+
     @CachedMethod
     def get_title_num(self):
         return len(filter(str.isdigit, self.__get_title()))
-    
+
     @CachedMethod
     def get_title_dot(self):
         return self.__get_title().count('.')
-    
+
     @CachedMethod
     def get_title_oth(self):
         return self.get_title_len() - self.get_title_lc() - self.get_title_uc() - self.get_title_num()
-    
+
     @CachedMethod
     def __get_author_raw(self):
         return _perl_regex(r'print $1 while /\/Author[^\w\d]*\((.*?[^\\]?)\)/g', self.pdf).splitlines()
-    
+
     @CachedMethod
     def __get_author(self):
         return _sanitize_PDF_literal_string(self.__get_author_raw()[-1]) if self.__get_author_raw() else ''
-    
+
     @CachedMethod
     def get_author_len(self):
         return len(self.__get_author())
-    
+
     @CachedMethod
     def get_author_lc(self):
         return len(filter(str.islower, self.__get_author()))
-    
+
     @CachedMethod
     def get_author_uc(self):
         return len(filter(str.isupper, self.__get_author()))
-    
+
     @CachedMethod
     def get_author_num(self):
         return len(filter(str.isdigit, self.__get_author()))
-    
+
     @CachedMethod
     def get_author_oth(self):
         return self.get_author_len() - self.get_author_lc() - self.get_author_uc() - self.get_author_num()
-    
+
     @CachedMethod
     def get_author_dot(self):
         return self.__get_author().count('.')
-    
+
     @CachedMethod
     def __get_producer_raw(self):
         r1 = _perl_regex(r'print $1 while /\/Producer[^\w\d]*\((.*?[^\\]?)\)/g', self.pdf)
         r2 = _perl_regex(r'print $1 while /Producer>(.*?)<\//g', self.pdf)
         return (r1 + r2).splitlines()
-    
+
     @CachedMethod
     def __get_producer(self):
         return _sanitize_PDF_literal_string(self.__get_producer_raw()[-1]) if self.__get_producer_raw() else ''
-    
+
     @CachedMethod
     def get_producer_len(self):
         return len(self.__get_producer())
-    
+
     @CachedMethod
     def get_producer_lc(self):
         return len(filter(str.islower, self.__get_producer()))
-    
+
     @CachedMethod
     def get_producer_uc(self):
         return len(filter(str.isupper, self.__get_producer()))
-    
+
     @CachedMethod
     def get_producer_num(self):
         return len(filter(str.isdigit, self.__get_producer()))
-    
+
     @CachedMethod
     def get_producer_oth(self):
         return self.get_producer_len() - self.get_producer_lc() - self.get_producer_uc() - self.get_producer_num()
-    
+
     @CachedMethod
     def get_producer_dot(self):
         return self.__get_producer().count('.')
-    
+
     @CachedMethod
     def __get_creator_raw(self):
         r1 = _perl_regex(r'print $1 while /\/Creator[^\w\d]*\((.*?[^\\]?)\)/g', self.pdf)
         r2 = _perl_regex(r'print $1 while /CreatorTool>(.*?)<\//g', self.pdf)
         return (r1 + r2).splitlines()
-    
+
     @CachedMethod
     def __get_creator(self):
         return _sanitize_PDF_literal_string(self.__get_creator_raw()[-1]) if self.__get_creator_raw() else ''
-    
+
     @CachedMethod
     def get_creator_len(self):
         return len(self.__get_creator())
-    
+
     @CachedMethod
     def get_creator_lc(self):
         return len(filter(str.islower, self.__get_creator()))
-    
+
     @CachedMethod
     def get_creator_uc(self):
         return len(filter(str.isupper, self.__get_creator()))
-    
+
     @CachedMethod
     def get_creator_num(self):
         return len(filter(str.isdigit, self.__get_creator()))
-    
+
     @CachedMethod
     def get_creator_oth(self):
         return self.get_creator_len() - self.get_creator_lc() - self.get_creator_uc() - self.get_creator_num()
-    
+
     @CachedMethod
     def get_creator_dot(self):
         return self.__get_creator().count('.')
-    
+
     @CachedMethod
     def __get_subject_raw(self):
         return _perl_regex(r'print $1 while /\/Subject[^\w\d]*\((.*?[^\\]?)\)/g', self.pdf).splitlines()
-    
+
     @CachedMethod
     def __get_subject(self):
         return _sanitize_PDF_literal_string(self.__get_subject_raw()[-1]) if self.__get_subject_raw() else ''
-    
+
     @CachedMethod
     def get_subject_len(self):
         return len(self.__get_subject())
-    
+
     @CachedMethod
     def get_subject_lc(self):
         return len(filter(str.islower, self.__get_subject()))
-    
+
     @CachedMethod
     def get_subject_uc(self):
         return len(filter(str.isupper, self.__get_subject()))
-    
+
     @CachedMethod
     def get_subject_num(self):
         return len(filter(str.isdigit, self.__get_subject()))
-    
+
     @CachedMethod
     def get_subject_oth(self):
         return self.get_subject_len() - self.get_subject_lc() - self.get_subject_uc() - self.get_subject_num()
-    
+
     @CachedMethod
     def get_subject_dot(self):
         return self.__get_subject().count('.')
-    
+
     @CachedMethod
     def __get_keywords_raw(self):
         r1 = _perl_regex(r'print $1 while /\/Keywords[^\w\d]*\((.*?[^\\]?)\)/g', self.pdf)
         r2 = _perl_regex(r'print $1 while /\<pdf:Keywords>(.*?)<\/pdf:Keywords>/g', self.pdf)
         return (r1 + r2).splitlines()
-    
+
     @CachedMethod
     def __get_keywords(self):
         return _sanitize_PDF_literal_string(self.__get_keywords_raw()[-1]) if self.__get_keywords_raw() else ''
-    
+
     @CachedMethod
     def get_keywords_len(self):
         return len(self.__get_keywords())
-    
+
     @CachedMethod
     def get_keywords_lc(self):
         return len(filter(str.islower, self.__get_keywords()))
-    
+
     @CachedMethod
     def get_keywords_uc(self):
         return len(filter(str.isupper, self.__get_keywords()))
-    
+
     @CachedMethod
     def get_keywords_num(self):
         return len(filter(str.isdigit, self.__get_keywords()))
-    
+
     @CachedMethod
     def get_keywords_oth(self):
         return self.get_keywords_len() - self.get_keywords_lc() - self.get_keywords_uc() - self.get_keywords_num()
-    
+
     @CachedMethod
     def get_keywords_dot(self):
         return self.__get_keywords().count('.')
-    
+
     @CachedMethod
     def get_count_page_obs(self):
         r = _perl_regex(r'while (/\/(P|#50)(a|#61)(g|#67)(e|#65)[^\w\d]/g) {$c++} print $c', self.pdf)
         return int(r) - self.get_count_page() if len(r) > 1 else 0
-    
+
     @CachedMethod
     def get_count_objstm_obs(self):
         r = _perl_regex(r'while (/\/(O|#4[fF])(b|#62)(j|#6[aA])(S|#53)(t|#74)(m|#6[Dd])[^\w\d]/g) {$c++} print $c', self.pdf)
         return int(r) - self.get_count_objstm() if len(r) > 1 else 0
-    
+
     @CachedMethod
     def get_count_js_obs(self):
         r = _perl_regex(r'while (/\/(J|#4[aA])(S|#53)[^\w\d]/g) {$c++} print $c', self.pdf)
         return int(r) - self.get_count_js() if len(r) > 1 else 0
-    
+
     @CachedMethod
     def get_count_javascript_obs(self):
         r = _perl_regex(r'while (/\/(J|#4[aA])(a|#61)(v|#76)(a|#61)(S|#53)(c|#63)(r|#72)(i|#69)(p|#70)(t|#74)[^\w\d]/g) {$c++} print $c', self.pdf)
         return int(r) - self.get_count_javascript() if len(r) > 1 else 0
-    
+
     @CachedMethod
     def get_count_action_obs(self):
         r = _perl_regex(r'while (/\/((O|#4F)(p|#70)(e|#65)(n|#6[eE])(A|#41)(c|#63)(t|#74)(i|#69)(o|#6[fF])(n|#6[eE])|(A|#41)(A|#41))[^\w\d]/g) {$c++} print $c', self.pdf)
         return int(r) - self.get_count_action() if len(r) > 1 else 0
-    
+
     @CachedMethod
     def get_count_acroform_obs(self):
         r = _perl_regex(r'while (/\/(A|#41)(c|#63)(r|#72)(o|#6[fF])(F|#46)(o|#6[fF])(r|#72)(m|#6[dD])[^\w\d]/g) {$c++} print $c', self.pdf)
         return int(r) - self.get_count_acroform() if len(r) > 1 else 0
-    
+
     @CachedMethod
     def get_count_font_obs(self):
         r = _perl_regex(r'while (/\/(F|#46)(o|#6[fF])(n|#6[eE])(t|#74)[^\w\d]/g) {$c++} print $c', self.pdf)
         return int(r) - self.get_count_font() if len(r) > 1 else 0
-    
+
     @CachedMethod
     def get_delta_ts(self):
         return self.get_createdate_ts() - self.get_moddate_ts()
-    
+
     @CachedMethod
     def get_delta_tz(self):
         return self.get_createdate_tz() - self.get_moddate_tz()
-    
+
     @CachedMethod
     def get_moddate_mismatch(self):
         return len(set(self.__get_moddate_raw()))
-    
+
     @CachedMethod
     def get_createdate_mismatch(self):
         return len(set(self.__get_createdate_raw()))
-    
+
     @CachedMethod
     def get_pdfid0_mismatch(self):
         return len(set(self.__get_pdfid0_raw()))
-    
+
     @CachedMethod
     def get_pdfid1_mismatch(self):
         return len(set(self.__get_pdfid1_raw()))
-    
+
     @CachedMethod
     def get_title_mismatch(self):
         return len(set(self.__get_title_raw()))
-    
+
     @CachedMethod
     def get_author_mismatch(self):
         return len(set(self.__get_author_raw()))
-    
+
     @CachedMethod
     def get_producer_mismatch(self):
         return len(set(self.__get_producer_raw()))
-    
+
     @CachedMethod
     def get_creator_mismatch(self):
         return len(set(self.__get_creator_raw()))
-    
+
     @CachedMethod
     def get_company_mismatch(self):
         companies = _perl_regex(r'print $1 while /\/Company[^\w\d]*\((.*?[^\\]?)\)/g', self.pdf)
         return len(set(companies.splitlines()))
-    
+
     @CachedMethod
     def get_subject_mismatch(self):
         return len(set(self.__get_subject_raw()))
-    
+
     @CachedMethod
     def get_keywords_mismatch(self):
         return len(set(self.__get_keywords_raw()))
-    
+
     @CachedMethod
     def __get_boxes_raw(self):
         r = _perl_regex(r'print sprintf("%d ", ($rr = $1) =~ tr/\r\n/  /), $rr while /\[\s*((([+|-]?(\d+\.?\d*|\d*\.?\d+))\s+){3}([+|-]?(\d+\.?\d*|\d*\.?\d+)))\s*\]/g', self.pdf)
@@ -1107,27 +1107,27 @@ class FeatureEdit(object):
             dims = [float(dim) for dim in dims.split(' ')]
             boxes.append(dims)
         return boxes
-    
+
     @staticmethod
     def __is_box_a4(box):
         return box[0] == 0 and box[1] == 0 and box[2] >= 596 and box[2] <= 599  and box[3] >= 841 and box[3] <= 844
-    
+
     @staticmethod
     def __is_box_letter(box):
         return box[0] == 0 and box[1] == 0 and box[2] >= 610 and box[2] <= 613  and box[3] >= 790 and box[3] <= 793
-    
+
     @staticmethod
     def __is_box_overlap(box):
         return box[0] == 0 and box[1] == 0 and box[2] >= 596 and box[2] <= 599  and box[3] >= 790 and box[3] <= 793
-    
+
     @staticmethod
     def __is_box_legal(box):
         return box[0] == 0 and box[1] == 0 and box[2] >= 610 and box[2] <= 613  and box[3] >= 1006 and box[3] <= 1009
-    
+
     @staticmethod
     def __is_box_other(box):
         return not (FeatureEdit.__is_box_a4(box) or FeatureEdit.__is_box_letter(box) or FeatureEdit.__is_box_overlap(box) or FeatureEdit.__is_box_legal(box))
-    
+
     @CachedMethod
     def get_count_box_a4(self):
         count = 0
@@ -1135,7 +1135,7 @@ class FeatureEdit(object):
             if self.__is_box_a4(box):
                 count += 1
         return count
-    
+
     @CachedMethod
     def get_count_box_letter(self):
         count = 0
@@ -1143,7 +1143,7 @@ class FeatureEdit(object):
             if self.__is_box_letter(box):
                 count += 1
         return count
-    
+
     @CachedMethod
     def get_count_box_overlap(self):
         count = 0
@@ -1151,7 +1151,7 @@ class FeatureEdit(object):
             if self.__is_box_overlap(box):
                 count += 1
         return count
-    
+
     @CachedMethod
     def get_count_box_legal(self):
         count = 0
@@ -1159,7 +1159,7 @@ class FeatureEdit(object):
             if self.__is_box_legal(box):
                 count += 1
         return count
-    
+
     @CachedMethod
     def get_count_box_other(self):
         count = 0
@@ -1167,14 +1167,14 @@ class FeatureEdit(object):
             if self.__is_box_other(box):
                 count += 1
         return count
-    
+
     @CachedMethod
     def get_box_other_only(self):
         for box in self.__get_boxes_raw():
             if not self.__is_box_other(box):
                 return False
         return True
-    
+
     @CachedMethod
     def get_box_nonother_types(self):
         count = 0
@@ -1182,7 +1182,7 @@ class FeatureEdit(object):
             if not self.__is_box_other(box):
                 count += 1
         return count
-    
+
     @CachedMethod
     def __get_images_raw(self):
         r = _perl_regex(r'print sprintf("%d ", ($rr = $1) =~ tr/\r\n/  /), $rr while /(<<[^<]*?\/Height\s+\d+.*?>>)/g', self.pdf)
@@ -1197,55 +1197,55 @@ class FeatureEdit(object):
                 continue
             image_sizes.append(int(height) * int(width))
         return image_sizes
-    
+
     @CachedMethod
     def get_image_totalpx(self):
         return sum(self.__get_images_raw())
-    
+
     @CachedMethod
     def get_count_image_total(self):
         return len(self.__get_images_raw())
-    
+
     @CachedMethod
     def get_count_image_xsmall(self):
         return len([1 for image_size in self.__get_images_raw() if image_size <= 4096])
-    
+
     @CachedMethod
     def get_count_image_small(self):
         return len([1 for image_size in self.__get_images_raw() if image_size > 4096 and image_size <= 64000])
-    
+
     @CachedMethod
     def get_count_image_med(self):
         return len([1 for image_size in self.__get_images_raw() if image_size > 64000 and image_size <= 786432])
-    
+
     @CachedMethod
     def get_count_image_large(self):
         return len([1 for image_size in self.__get_images_raw() if image_size > 786432 and image_size <= 12582912])
-    
+
     @CachedMethod
     def get_count_image_xlarge(self):
         return len([1 for image_size in self.__get_images_raw() if image_size > 12582912])
-    
+
     @CachedMethod
     def get_image_mismatch(self):
         return max(0, len(set(self.__get_images_raw())) - 1)
-    
+
     @CachedMethod
     def get_ratio_imagepx_size(self):
         return self.get_image_totalpx() / float(self.get_size())
-    
+
     @CachedMethod
     def get_ratio_size_obj(self):
         return self.get_size() / (self.get_count_obj() + 1e-6)
-    
+
     @CachedMethod
     def get_ratio_size_stream(self):
         return self.get_size() / (self.get_count_stream() + 1e-6)
-    
+
     @CachedMethod
     def get_ratio_size_page(self):
         return self.get_size() / (self.get_count_page() + 1e-6)
-    
+
     @CachedMethod
     def __get_obj_sizes_raw(self):
         r1 = _perl_regex(r'print sprintf("%d", @-[1]) while /\d+\s+\d+\s+(obj)/g', self.pdf)
@@ -1271,144 +1271,144 @@ class FeatureEdit(object):
 #                 break
 #             res.append(endi - starti)
 #         return res if res else [0]
-    
+
     @CachedMethod
     def get_len_obj_min(self):
         return min(self.__get_obj_sizes_raw())
-    
+
     @CachedMethod
     def get_len_obj_max(self):
         return max(self.__get_obj_sizes_raw())
-    
+
     @CachedMethod
     def get_len_obj_avg(self):
         sizes = self.__get_obj_sizes_raw()
         return sum(sizes) / float(len(sizes))
-    
+
     @CachedMethod
     def __get_stream_sizes_raw(self):
         r = _perl_regex(r'print sprintf("%d", @-[2]-@-[1]) while /[^\w](s)tream\s.*?[^\w](e)ndstream\s/sg', self.pdf)
         if not r: return [0]
         return [int(line) for line in r.split('\n') if line]
-    
+
     @CachedMethod
     def get_len_stream_min(self):
         return min(self.__get_stream_sizes_raw())
-    
+
     @CachedMethod
     def get_len_stream_max(self):
         return max(self.__get_stream_sizes_raw())
-    
+
     @CachedMethod
     def get_len_stream_avg(self):
         sizes = self.__get_stream_sizes_raw()
         return sum(sizes) / float(len(sizes)) if len(sizes) > 0 else 0.0
-    
+
     @CachedMethod
     def __get_eof_positions_raw(self):
         r = _perl_regex(r'print sprintf("%d", @-[1]) while /%(E)OF/g', self.pdf)
         if not r: return [0]
         return [int(line) for line in r.split('\n') if line]
-    
+
     @CachedMethod
     def get_pos_eof_min(self):
         return min(self.__get_eof_positions_raw()) / float(self.get_size())
-    
+
     @CachedMethod
     def get_pos_eof_max(self):
         return max(self.__get_eof_positions_raw()) / float(self.get_size())
-    
+
     @CachedMethod
     def get_pos_eof_avg(self):
         sizes = self.__get_eof_positions_raw()
         return sum(sizes) / float(len(sizes) * self.get_size())
-    
+
     @CachedMethod
     def __get_page_positions_raw(self):
         r = _perl_regex(r'print sprintf("%d", @-[1]) while /\/(P)age[^\w\d]/g', self.pdf)
         return [int(line) for line in r.split('\n') if line]
-    
+
     @CachedMethod
     def get_pos_page_min(self):
         pos = self.__get_page_positions_raw()
         return min(pos) / float(self.get_size()) if pos else -1.0
-    
+
     @CachedMethod
     def get_pos_page_max(self):
         pos = self.__get_page_positions_raw()
         return max(pos) / float(self.get_size()) if pos else -1.0
-    
+
     @CachedMethod
     def get_pos_page_avg(self):
         pos = self.__get_page_positions_raw()
         return sum(pos) / float(len(pos) * self.get_size()) if pos else -1.0
-    
+
     @CachedMethod
     def __get_acroform_positions_raw(self):
         r = _perl_regex(r'print sprintf("%d", @-[1]) while /(\/AcroForm)[^\w\d]/g', self.pdf)
         return [int(line) for line in r.split('\n') if line]
-    
+
     @CachedMethod
     def get_pos_acroform_min(self):
         pos = self.__get_acroform_positions_raw()
         return min(pos) / float(self.get_size()) if pos else -1.0
-    
+
     @CachedMethod
     def get_pos_acroform_max(self):
         pos = self.__get_acroform_positions_raw()
         return max(pos) / float(self.get_size()) if pos else -1.0
-    
+
     @CachedMethod
     def get_pos_acroform_avg(self):
         pos = self.__get_acroform_positions_raw()
         return sum(pos) / float(len(pos) * self.get_size()) if pos else -1.0
-    
+
     @CachedMethod
     def __get_box_positions_raw(self):
         r = _perl_regex(r'print sprintf("%d", @-[1]) while /\[\s*((([+|-]?(\d+\.?\d*|\d*\.?\d+))\s+){3}([+|-]?(\d+\.?\d*|\d*\.?\d+)))\s*\]/g', self.pdf)
         return [int(line) for line in r.split('\n') if line]
-    
+
     @CachedMethod
     def get_pos_box_min(self):
         pos = self.__get_box_positions_raw()
         return min(pos) / float(self.get_size()) if pos else -1.0
-    
+
     @CachedMethod
     def get_pos_box_max(self):
         pos = self.__get_box_positions_raw()
         return max(pos) / float(self.get_size()) if pos else -1.0
-    
+
     @CachedMethod
     def get_pos_box_avg(self):
         pos = self.__get_box_positions_raw()
         return sum(pos) / float(len(pos) * self.get_size()) if pos else -1.0
-    
+
     @CachedMethod
     def __get_image_positions_raw(self):
         r = _perl_regex(r'print sprintf("%d", @-[1]) while /(<<(?=.*\/Height\s+\d+)(?=.*\/Width\s+\d+)(?:.*?<<.*>>)*.*?>>)/g', self.pdf)
         return [int(line) for line in r.split('\n') if line]
-    
+
     @CachedMethod
     def get_pos_image_min(self):
         pos = self.__get_image_positions_raw()
         return min(pos) / float(self.get_size()) if pos else -1.0
-    
+
     @CachedMethod
     def get_pos_image_max(self):
         pos = self.__get_image_positions_raw()
         return max(pos) / float(self.get_size()) if pos else -1.0
-    
+
     @CachedMethod
     def get_pos_image_avg(self):
         pos = self.__get_image_positions_raw()
         return sum(pos) / float(len(pos) * self.get_size()) if pos else -1.0
-    
+
     @CachedMethod
     def _get_startxref_position(self):
         r = _perl_regex(r'print sprintf("%d", @-[1]) while /[^\w\d](startxref)[^\w\d]/g', self.pdf)
         r = r.split('\n')
         return int(r[-2]) if len(r) > 1 else self.get_size()
-    
+
     def check_feature_change_valid(self, feat, feat_val):
         feat_name = FeatureDescriptor.get_feature_name(feat) if type(feat) == int else feat
         feat_desc = FeatureDescriptor.get_feature_descriptions()[feat_name]
@@ -1419,53 +1419,53 @@ class FeatureEdit(object):
         if type(feat_val) == bool:
             return True # No need to check value range
         current_value = getattr(self, 'get_{}'.format(feat_name))()
-        
+
         if feat_desc['range'][0] == FileDefined:
             if current_value > feat_val:
                 return MinimumExceededError("Feature '{feat}' value minimum is {min}, got {got}.".format(feat=feat_name, min=current_value, got=feat_val))
         elif feat_desc['range'][0] > feat_val:
             return MinimumExceededError("Feature '{feat}' value minimum is {min}, got {got}.".format(feat=feat_name, min=feat_desc['range'][0], got=feat_val))
-        
+
         if feat_desc['range'][1] == FileDefined:
             if current_value < feat_val:
                 return MaximumExceededError("Feature '{feat}' value maximum is {max}, got {got}.".format(feat=feat_name, max=current_value, got=feat_val))
         elif feat_desc['range'][1] < feat_val:
             return MaximumExceededError("Feature '{feat}' value maximum is {max}, got {got}.".format(feat=feat_name, max=feat_desc['range'][1], got=feat_val))
         return True
-    
+
     def modify_file(self, features, dir='/tmp', verbose=False):
         '''
-        Makes a new PDF file with the specified features modified, if 
-        possible. 
-        
-            features: a vector of desired features or a dictionary with feature 
-                      names mapped to desired values. 
+        Makes a new PDF file with the specified features modified, if
+        possible.
+
+            features: a vector of desired features or a dictionary with feature
+                      names mapped to desired values.
             verbose: prints a lot if True
-        
-        Currently, these 68 features are modifiable: 
-        
-          -- FREELY MODIFIABLE (within bounds) [35 features]: 
+
+        Currently, these 68 features are modifiable:
+
+          -- FREELY MODIFIABLE (within bounds) [35 features]:
             - version
-            - {metadata}_{i} where metadata is one of [author, creator, 
-              keywords, producer, subject, title] and i is one of [uc, lc, 
+            - {metadata}_{i} where metadata is one of [author, creator,
+              keywords, producer, subject, title] and i is one of [uc, lc,
               num, oth, dot]. 6 x 5 = 30 features
             - moddate_(ts|tz), createdate_(ts|tz); 4 features
-              
-          -- INCREMENTABLE ONLY [33 features]: 
+
+          -- INCREMENTABLE ONLY [33 features]:
             - _incrementable_feats, 32 features
             - size
-        
+
         Returns a dictionary like this:
         {
             'path' : Path to the newly-created PDF with modified features
-            'report' : A dictionary with the results of modification attempts 
-                       for every feature for which modification was requested. 
-                       It maps the feature name to a dictionary: 
+            'report' : A dictionary with the results of modification attempts
+                       for every feature for which modification was requested.
+                       It maps the feature name to a dictionary:
                        {
                            'succes' : boolean, indicating modification success
-                           'val' : the value which ended up in the file 
+                           'val' : the value which ended up in the file
                         }
-            'feats' : A numpy feature vector of the newly-created PDF file. 
+            'feats' : A numpy feature vector of the newly-created PDF file.
         }
         '''
         if type(features) == numpy.ndarray:
@@ -1483,32 +1483,32 @@ class FeatureEdit(object):
             features = dict(zip(FeatureDescriptor.get_feature_names(), features))
         assert type(features) == dict
         # Generate a new PDF file
-        newpdf = tempfile.NamedTemporaryFile(mode='rwb+', 
-                                             bufsize=10*1024*1024, 
-                                             suffix='.pdf', 
-                                             delete=False, 
+        newpdf = tempfile.NamedTemporaryFile(mode='rwb+',
+                                             bufsize=10*1024*1024,
+                                             suffix='.pdf',
+                                             delete=False,
                                              dir=dir)
-        
+
         # Copy the old one into the new one
         with open(self.pdf, 'rb') as oldpdf:
             oldbytes = oldpdf.read(1024)
             while oldbytes:
                 newpdf.write(oldbytes)
                 oldbytes = oldpdf.read(1024)
-        
+
         # Flush the file, so that the changes are visible when we mmap() it
         newpdf.flush()
-        
+
         # Map the file into memory for regular expression support
         ORIGINAL_SIZE = os.path.getsize(newpdf.name)
         mm = mmap.mmap(newpdf.fileno(), ORIGINAL_SIZE, access=mmap.ACCESS_WRITE)
-        
+
         # Reset insert offset
         self.insert_offset = self._get_startxref_position()
         report = {}
         to_change = {} # features with required new values
         features_current = self.retrieve_feature_dictionary()
-        
+
         # Check which of the requested features we can modify
         for (feat, feat_val) in iter(sorted(features.items())):
             if features_current[feat] != feat_val and not isinstance(feat_val, Exception):
@@ -1529,7 +1529,7 @@ class FeatureEdit(object):
                 # Ignore features which already have the desired values
                 # report[feat] = feat_val
                 pass
-        
+
         # Modify version
         if 'version' in to_change:
             match = _regex_pdf_version.search(mm)
@@ -1538,7 +1538,7 @@ class FeatureEdit(object):
                 mm[match.start(1)] = str(to_change['version'])
                 report['version'] = to_change['version']
                 del to_change['version']
-        
+
         # Modify incrementable features
         for feat in _incrementable_feats:
             if feat in to_change:
@@ -1548,7 +1548,7 @@ class FeatureEdit(object):
                 self._insert_into_mmap(mm, ' {}\n'.format(_incrementable_feats[feat]) * increase)
                 report[feat] = to_change[feat]
                 del to_change[feat]
-        
+
         # Modify metadata features: author, creator, keywords, producer, subject and title
         for (feat_prefix, feat_str) in _metadata_feats.iteritems():
             # Gather all incrementable metadata features with the given prefix
@@ -1573,7 +1573,7 @@ class FeatureEdit(object):
             if addendum:
                 if verbose: print "Inserting '%s'" % feat_str.format(addendum)
                 self._insert_into_mmap(mm, feat_str.format(addendum))
-        
+
         # Modify modification timestamp and/or timezone
         if 'moddate_ts' in to_change or 'moddate_tz' in to_change:
             moddate = '/ModDate(D:{ts}{tz})'
@@ -1601,7 +1601,7 @@ class FeatureEdit(object):
             # Check if there already exists a moddate which can be modified in-place
             datelines = _perl_regex(r'print @-[1], " ", $1 while /\/ModDate\((.*?)\)/g', self.pdf).splitlines()
             modified = False
-            if datelines: 
+            if datelines:
                 datelines = datelines[-1].split(' ')
                 mod_location = int(datelines[0])
                 old_moddate = datelines[1]
@@ -1615,8 +1615,8 @@ class FeatureEdit(object):
                 # Insert a new moddate
                 if verbose: print 'Inserting "%s"' % moddate.format(ts = ts_str, tz=tz_str)
                 self._insert_into_mmap(mm, moddate.format(ts = ts_str, tz=tz_str))
-            
-        
+
+
         # Modify creation timestamp and/or timezone
         if 'createdate_ts' in to_change or 'createdate_tz' in to_change:
             createdate = '<xap:CreateDate>{ts}{tz}</xap:CreateDate>'
@@ -1644,7 +1644,7 @@ class FeatureEdit(object):
             # Check if there already exists a moddate which can be modified in-place
             datelines = _perl_regex(r'print @-[1], " ", $1 while /<x[am]p:CreateDate>(.*?)<\/x[am]p:CreateDate>/g', self.pdf).splitlines()
             modified = False
-            if datelines: 
+            if datelines:
                 datelines = datelines[-1].split(' ')
                 mod_location = int(datelines[0])
                 old_createdate = datelines[1]
@@ -1657,7 +1657,7 @@ class FeatureEdit(object):
             if not modified:
                 if verbose: print 'Inserting "%s"' % createdate.format(ts = ts_str, tz=tz_str)
                 self._insert_into_mmap(mm, createdate.format(ts = ts_str, tz=tz_str))
-        
+
         # Modify size by inserting spaces. Make sure this one comes last
         if 'size' in to_change:
             insert_count = to_change['size'] - mm.size()
@@ -1668,7 +1668,7 @@ class FeatureEdit(object):
                 del to_change['size']
             else:
                 if verbose: print 'Not modifying size [{} extra bytes already]'.format(-insert_count)
-        
+
         # Flush the memory-mapped file to save changes and close it
         mm.flush()
         mm.close()
@@ -1685,7 +1685,7 @@ class FeatureEdit(object):
         for k in to_change.keys():
             report[k] = {'success':False, 'val':to_change[k]}
         return {'path' : newpdf.name, 'report' : report, 'feats' : FeatureEdit(newpdf.name).retrieve_feature_vector_numpy()}
-    
+
     def _insert_into_mmap(self, mmap, data):
         file_trailer = mmap.size() - self.insert_offset
         mmap.resize(mmap.size() + len(data))
@@ -1693,4 +1693,3 @@ class FeatureEdit(object):
         mmap.seek(self.insert_offset)
         mmap.write(data)
         self.insert_offset += len(data)
-    

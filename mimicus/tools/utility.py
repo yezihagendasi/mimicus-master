@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 '''
 Copyright 2013, 2014 Nedim Srndic, University of Tuebingen
 
@@ -76,6 +77,8 @@ def get_pdfs(source):
     source - a directory containing PDF files or a file with a list of 
         newline-separated paths to PDF files. 
     '''
+    # 返回在给定源中找到的所有PDF文件的列表
+    # 包含PDF文件的目录或包含PDF文件的换行分隔路径列表的文件
     pdfs = []
     if os.path.isdir(source):
         pdfs = [os.path.join(source, f) for f in os.listdir(source) if 

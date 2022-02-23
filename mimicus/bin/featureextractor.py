@@ -51,13 +51,17 @@ def extract_features(pdfs_ben, pdfs_mal, csv_name):
     file_names = []
     # Extract malicious and benign features
     pool = multiprocessing.Pool()
+
     for pdf, feats in pool.imap(get_features, pdfs_mal):
+        print 'mal'
         if feats is not None:
             feat_vecs.append(feats)
             labels.append(1.0)
             file_names.append(pdf)
-    
+
+
     for pdf, feats in pool.imap(get_features, pdfs_ben):
+        print 'ben'
         if feats is not None:
             feat_vecs.append(feats)
             labels.append(0.0)
